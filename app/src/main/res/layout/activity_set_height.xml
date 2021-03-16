@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#5C868C"
+    tools:context=".SetHeight">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="500dp">
+
+        <Spinner
+            android:id="@+id/sp_gender_select"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#A8D7DD"
+            android:entries="@array/gender_items"
+            android:gravity="center_horizontal" />
+
+        <Spinner
+            android:id="@+id/sp_height_select"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="70dp"
+            android:background="#A8D7DD"
+            android:dropDownWidth="match_parent"
+            android:entries="@array/height_items" />
+
+        <TextView
+            android:id="@+id/btn_start_trial"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginLeft="300dp"
+            android:layout_marginTop="140dp"
+            android:text="Start trial >>"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            android:textStyle="bold"
+
+            />
+    </RelativeLayout>
+
+</RelativeLayout>
