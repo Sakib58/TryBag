@@ -16,6 +16,7 @@ public class SetHeight extends AppCompatActivity {
     public int height;
     private Spinner spinner;
     private TextView button;
+    Button checkUI;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,14 @@ public class SetHeight extends AppCompatActivity {
         setContentView(R.layout.activity_set_height);
         spinner = findViewById(R.id.sp_height_select);
         button = findViewById(R.id.btn_start_trial);
+        checkUI = findViewById(R.id.btn_check_ui);
+
+        checkUI.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SetHeight.this,BagTrialActivity.class));
+            }
+        });
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
