@@ -120,14 +120,23 @@ public class CameraSide2 extends AppCompatActivity {
             btnNext.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    rlMainImage.setDrawingCacheEnabled(true);
-                    rlMainImage.buildDrawingCache();
-                    Bitmap bm = rlMainImage.getDrawingCache();
-                    System.out.println("Bitmap");
+                    ivTakenImage.setDrawingCacheEnabled(true);
+                    ivTakenImage.buildDrawingCache();
+                    Bitmap bm = ivTakenImage.getDrawingCache();
                     String bms = BitMapToString(bm);
+                    RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) bagImage.getLayoutParams();
+                    int height = layoutParams.height;
+                    int width = layoutParams.width;
+                    int marginLeft = layoutParams.leftMargin;
+                    int marginTop = layoutParams.topMargin;
+
                     SharedPreferences sharedPreferences = getSharedPreferences("image_prefs",0);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString("image_bitmap_side2",bms);
+                    editor.putInt("height_side2",height);
+                    editor.putInt("width_side2",width);
+                    editor.putInt("marginLeft_side2",marginLeft);
+                    editor.putInt("marginTop_side2",marginTop);
                     editor.apply();
                     Intent intent = new Intent(CameraSide2.this,CameraSide3.class);
                     //intent.putExtra("bms",bms);

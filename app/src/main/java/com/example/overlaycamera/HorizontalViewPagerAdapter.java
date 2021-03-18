@@ -6,20 +6,21 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
-/**
- * Created by mohit on 1/1/17.
- */
+import java.util.ArrayList;
+
 
 public class HorizontalViewPagerAdapter extends FragmentStatePagerAdapter {
 
     public String parentId;
+    public ArrayList<String> sideImages;
 
-    public void setParentID(String parentID){
+    public void setParentId(String parentID){
         this.parentId = parentID;
     }
 
-    public HorizontalViewPagerAdapter(FragmentManager fm) {
+    public HorizontalViewPagerAdapter(FragmentManager fm,ArrayList<String> sideImages) {
         super(fm);
+        this.sideImages = sideImages;
     }
 
     @Override
@@ -28,12 +29,13 @@ public class HorizontalViewPagerAdapter extends FragmentStatePagerAdapter {
         Bundle bundle = new Bundle();
         bundle.putString("parent",parentId);
         bundle.putString("child", String.valueOf(position));
+        bundle.putStringArrayList("side_images",sideImages);
         childFragment.setArguments(bundle);
         return childFragment;
     }
 
     @Override
     public int getCount() {
-        return 3;
+        return sideImages.size();
     }
 }

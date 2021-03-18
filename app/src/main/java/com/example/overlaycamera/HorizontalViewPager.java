@@ -5,10 +5,6 @@ import android.util.AttributeSet;
 
 import androidx.viewpager.widget.ViewPager;
 
-/**
- * Created by mohit on 1/1/17.
- */
-
 public class HorizontalViewPager extends ViewPager {
 
 

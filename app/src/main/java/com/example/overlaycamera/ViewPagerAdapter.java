@@ -6,18 +6,20 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
-/**
- * Created by mohit on 28/12/16.
- */
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class ViewPagerAdapter extends FragmentStatePagerAdapter {
-    public ViewPagerAdapter(FragmentManager fm) {
+    List<BagProperties> bags;
+    public ViewPagerAdapter(FragmentManager fm, List<BagProperties> bags) {
         super(fm);
+        this.bags = bags;
     }
 
     @Override
     public int getCount() {
-        return 10;
+        return bags.size();
     }
 
     @Override
@@ -25,6 +27,12 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
         ContentFragment contentFragment = new ContentFragment();
         Bundle bundle = new Bundle();
         bundle.putString("parent", String.valueOf(position));
+        ArrayList<String> sides = new ArrayList<>();
+        sides.add(bags.get(position).side1);
+        sides.add(bags.get(position).side2);
+        sides.add(bags.get(position).side3);
+        bundle.putStringArrayList("side_images",sides);
+
         contentFragment.setArguments(bundle);
         return contentFragment;
     }

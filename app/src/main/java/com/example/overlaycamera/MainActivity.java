@@ -124,20 +124,28 @@ public class MainActivity extends AppCompatActivity{
 
             ivTakenImage.setImageBitmap(pic);
             frameLayout.setVisibility(View.INVISIBLE);
-           // bagImage.setVisibility(View.INVISIBLE);
             btnNext.setVisibility(View.VISIBLE);
 
             btnNext.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    rlMainImage.setDrawingCacheEnabled(true);
-                    rlMainImage.buildDrawingCache();
-                    Bitmap bm = rlMainImage.getDrawingCache();
-                    System.out.println("Bitmap");
+                    ivTakenImage.setDrawingCacheEnabled(true);
+                    ivTakenImage.buildDrawingCache();
+                    Bitmap bm = ivTakenImage.getDrawingCache();
                     String bms = BitMapToString(bm);
+                    RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) bagImage.getLayoutParams();
+                    int height = layoutParams.height;
+                    int width = layoutParams.width;
+                    int marginLeft = layoutParams.leftMargin;
+                    int marginTop = layoutParams.topMargin;
+
                     SharedPreferences sharedPreferences = getSharedPreferences("image_prefs",0);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString("image_bitmap_side1",bms);
+                    editor.putInt("height_side1",height);
+                    editor.putInt("width_side1",width);
+                    editor.putInt("marginLeft_side1",marginLeft);
+                    editor.putInt("marginTop_side1",marginTop);
                     editor.apply();
                     Intent intent = new Intent(MainActivity.this,CameraSide2.class);
                     //intent.putExtra("bms",bms);
@@ -194,10 +202,7 @@ public class MainActivity extends AppCompatActivity{
         if (height>0){
             bagImage.requestLayout();
             bagImage.getLayoutParams().height = bagImage.getLayoutParams().height-(height-90);
-            Toast.makeText(this,"Width"+ bagImage.getHeight(), Toast.LENGTH_SHORT).show();
 
-        }else{
-            Toast.makeText(this,"OPS!",Toast.LENGTH_SHORT).show();
         }
     }
 
