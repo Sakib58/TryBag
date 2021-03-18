@@ -1,12 +1,15 @@
 package com.example.overlaycamera;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.StrictMode;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -31,6 +34,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.reflect.Method;
 import java.net.URL;
 import java.net.URLConnection;
 
@@ -59,6 +63,12 @@ public class ChildFragment extends Fragment {
         btnDownload = view.findViewById(R.id.fab_download);
         rlTrial = view.findViewById(R.id.rl_trial);
         btnShare = view.findViewById(R.id.fab_share);
+        btnShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                shareImage();
+            }
+        });
 
         btnDownload.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -133,6 +143,54 @@ public class ChildFragment extends Fragment {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void shareImage() {
+        rlTrial.setDrawingCacheEnabled(true);
+        rlTrial.buildDrawingCache();
+        Bitmap bitmap = rlTrial.getDrawingCache();
+        File dir = Environment.getExternalStoragePublicDirectory("/TryBag/");
+        //File dir = new File(filepath+"/TryBag/");
+        if (!dir.exists()){
+            dir.mkdir();
+        }
+        File file = new File(dir,System.currentTimeMillis()+".jpg");
+
+        try {
+            outputStream = new FileOutputStream(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        bitmap.compress(Bitmap.CompressFormat.JPEG,100,outputStream);
+        try {
+            outputStream.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            outputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if(Build.VERSION.SDK_INT>=24){
+            try{
+                Method m = StrictMode.class.getMethod("disableDeathOnFileUriExposure");
+                m.invoke(null);
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+
+        Uri uri = Uri.fromFile(file);
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_SEND);
+        intent.setType("image/*");
+
+        intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "");
+        intent.putExtra(android.content.Intent.EXTRA_TEXT, "");
+
+        intent.putExtra(Intent.EXTRA_STREAM, uri);
+        startActivity(Intent.createChooser(intent, "Share Cover Image"));
     }
 
   }
