@@ -1,10 +1,14 @@
 package com.example.overlaycamera;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -31,6 +35,7 @@ public class HorizontalViewPagerAdapter extends FragmentStatePagerAdapter {
         bundle.putString("child", String.valueOf(position));
         bundle.putStringArrayList("side_images",sideImages);
         childFragment.setArguments(bundle);
+
         return childFragment;
     }
 

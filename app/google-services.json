@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "506083360883",
+    "project_id": "try-bag",
+    "storage_bucket": "try-bag.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:506083360883:android:ea597ac1c32b4928522a06",
+        "android_client_info": {
+          "package_name": "com.example.overlaycamera"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "506083360883-jrmqe5mb65hhejng40csrr1m3d5b91pr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4CcC3uk44bhoPT0GxWeS2Mbov8RRF-GA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "506083360883-jrmqe5mb65hhejng40csrr1m3d5b91pr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:506083360883:android:118dcc06e8de0db9522a06",
+        "android_client_info": {
+          "package_name": "com.example.trybag"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "506083360883-jrmqe5mb65hhejng40csrr1m3d5b91pr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4CcC3uk44bhoPT0GxWeS2Mbov8RRF-GA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "506083360883-jrmqe5mb65hhejng40csrr1m3d5b91pr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

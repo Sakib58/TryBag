@@ -14,7 +14,8 @@
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.OverlayCamera">
+        android:theme="@style/Theme.OverlayCamera"
+        >
         <activity android:name=".BagTrialActivity"></activity>
         <activity android:name=".CameraSide3" />
         <activity android:name=".CameraSide2" />

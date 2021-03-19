@@ -15,11 +15,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
@@ -49,8 +52,8 @@ public class ChildFragment extends Fragment {
     RelativeLayout rlTrial;
     OutputStream outputStream;
 
-    public ChildFragment() {
-        // Required empty public constructor
+    public ChildFragment(){
+
     }
 
 
@@ -62,27 +65,18 @@ public class ChildFragment extends Fragment {
         trialBagIV = view.findViewById(R.id.iv_trial_bag);
         btnDownload = view.findViewById(R.id.fab_download);
         rlTrial = view.findViewById(R.id.rl_trial);
-        btnShare = view.findViewById(R.id.fab_share);
-        btnShare.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                shareImage();
-            }
-        });
 
-        btnDownload.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveImage();
-            }
-        });
+
+
+
+        btnShare = view.findViewById(R.id.fab_share);
+
 
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("image_prefs",0);
 
         Bundle bundle = getArguments();
 
         int child = Integer.parseInt(bundle.getString("child")) + 1;
-        Log.d(TAG,"Child value is "+child);
         String bms1 = sharedPreferences.getString("image_bitmap_side"+child,"");
         Bitmap bm = StringToBitMap(bms1);
         trialBoyIV.setImageBitmap(bm);
@@ -98,6 +92,24 @@ public class ChildFragment extends Fragment {
                 .load(Uri.parse(bundle.getStringArrayList("side_images")
                         .get(child-1)))
                 .into(trialBagIV);
+
+
+        btnShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                shareImage(rlTrial);
+            }
+        });
+
+
+        btnDownload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("Parent: "+bundle.getString("parent")+" Child: "+bundle.getString("child"));
+                saveImage(rlTrial);
+            }
+        });
 
         return view;
     }
@@ -115,7 +127,7 @@ public class ChildFragment extends Fragment {
         }
     }
 
-    public void saveImage() {
+    public void saveImage(RelativeLayout rlTrial) {
         rlTrial.setDrawingCacheEnabled(true);
         rlTrial.buildDrawingCache();
         Bitmap bitmap = rlTrial.getDrawingCache();
@@ -145,7 +157,7 @@ public class ChildFragment extends Fragment {
         }
     }
 
-    public void shareImage() {
+    public void shareImage(RelativeLayout rlTrial) {
         rlTrial.setDrawingCacheEnabled(true);
         rlTrial.buildDrawingCache();
         Bitmap bitmap = rlTrial.getDrawingCache();
