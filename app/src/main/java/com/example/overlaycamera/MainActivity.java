@@ -22,6 +22,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -38,7 +39,8 @@ public class MainActivity extends AppCompatActivity{
     FrameLayout frameLayout;
     Camera camera;
     ShowCamera showCamera;
-    Button takePicture,btnCancel,btnSave,btnNext;
+    Button btnCancel,btnSave,btnNext;
+    ImageButton takePicture;
     RelativeLayout rlMainImage;
 
     private ViewGroup mainLayout;

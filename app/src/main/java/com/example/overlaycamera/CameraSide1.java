@@ -2,29 +2,23 @@ package com.example.overlaycamera;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.hardware.Camera;
 import android.os.Bundle;
 import android.util.Base64;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 
-public class CameraSide3 extends AppCompatActivity {
+public class CameraSide1 extends AppCompatActivity {
 
     FrameLayout frameLayout;
     Camera camera;
@@ -36,21 +30,19 @@ public class CameraSide3 extends AppCompatActivity {
     int height;
     public static int bagHeight,bagWidth,bagMarginTop,bagMarginLeft;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_camera_side3);
+        setContentView(R.layout.activity_camera_side1);
 
         SharedPreferences sharedPreferences = getSharedPreferences("height_pref",0);
         height = sharedPreferences.getInt("height",0);
 
-        frameLayout = findViewById(R.id.framelayout3);
-        takePicture = findViewById(R.id.button3);
-        helpBtn = findViewById(R.id.ib_help3);
-        bagImage = findViewById(R.id.iv_bag3);
-        capturedImage = findViewById(R.id.iv_captured_image_3);
+        frameLayout = findViewById(R.id.framelayout);
+        takePicture = findViewById(R.id.button1);
+        helpBtn = findViewById(R.id.ib_help);
+        bagImage = findViewById(R.id.iv_bag);
+        capturedImage = findViewById(R.id.iv_captured_image_1);
 
         setBagSize();
 
@@ -85,7 +77,7 @@ public class CameraSide3 extends AppCompatActivity {
             bagWidth = layoutParams.width;
             bagMarginTop = layoutParams.topMargin;
             bagMarginLeft = layoutParams.leftMargin;
-            startActivity(new Intent(CameraSide3.this,ImagePreview3.class));
+            startActivity(new Intent(CameraSide1.this,ImagePreview1.class));
         }
     };
 
@@ -104,4 +96,6 @@ public class CameraSide3 extends AppCompatActivity {
         String temp = Base64.encodeToString(b, Base64.DEFAULT);
         return temp;
     }
+
+
 }

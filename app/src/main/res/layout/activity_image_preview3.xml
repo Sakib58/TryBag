@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ImagePreview3">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/iv_set_image_3"
+        android:scaleType="centerCrop"
+        />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/iv_set_bag_image_3"
+        android:src="@drawable/bag3"
+        android:scaleType="fitXY"
+        />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_move_up3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="250dp"
+        android:layout_marginTop="500dp"
+        android:alpha="0.8"
+        android:clickable="true"
+        app:backgroundTint="#EFDEDE"
+        app:srcCompat="@android:drawable/arrow_up_float" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_move_down3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="250dp"
+        android:layout_marginTop="600dp"
+        android:alpha="0.8"
+        android:clickable="true"
+        android:rotation="180"
+        app:backgroundTint="#EFDEDE"
+        app:srcCompat="@android:drawable/arrow_up_float" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_move_left3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="200dp"
+        android:layout_marginTop="550dp"
+        android:alpha="0.8"
+        android:clickable="true"
+        android:rotation="270"
+        app:backgroundTint="#EFDEDE"
+        app:srcCompat="@android:drawable/arrow_up_float" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_move_right3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="300dp"
+        android:layout_marginTop="550dp"
+        android:alpha="0.8"
+        android:clickable="true"
+        android:rotation="90"
+        app:backgroundTint="#EFDEDE"
+        app:srcCompat="@android:drawable/arrow_up_float" />
+
+    <Button
+        android:id="@+id/btn_back_ip3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="700dp"
+        android:text="Back"
+        android:textColor="#0B0B0B"
+        app:backgroundTint="#F4EBEB" />
+
+    <Button
+        android:id="@+id/btn_next_ip3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="280dp"
+        android:layout_marginTop="700dp"
+        android:text="Next"
+        android:textColor="#0B0B0B"
+        app:backgroundTint="#F4EBEB" />
+
+
+</RelativeLayout>

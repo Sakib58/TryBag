@@ -17,6 +17,8 @@ public class HorizontalViewPagerAdapter extends FragmentStatePagerAdapter {
 
     public String parentId;
     public ArrayList<String> sideImages;
+    public static String image_src;
+    public static String side_image;
 
     public void setParentId(String parentID){
         this.parentId = parentID;
@@ -31,9 +33,17 @@ public class HorizontalViewPagerAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         ChildFragment childFragment = new ChildFragment();
         Bundle bundle = new Bundle();
+
         bundle.putString("parent",parentId);
         bundle.putString("child", String.valueOf(position));
-        bundle.putStringArrayList("side_images",sideImages);
+
+        //image_src = BagTrialActivity.images.get(position).imageBitmap;
+        //bundle.putInt("image_height",BagTrialActivity.images.get(position).height);
+        //bundle.putInt("image_width",BagTrialActivity.images.get(position).width);
+        //bundle.putInt("image_marginLeft",BagTrialActivity.images.get(position).marginLeft);
+        //bundle.putInt("image_marginTop",BagTrialActivity.images.get(position).marginTop);
+        //bundle.putString("side_image",sideImages.get(position));
+
         childFragment.setArguments(bundle);
 
         return childFragment;
@@ -41,6 +51,6 @@ public class HorizontalViewPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return sideImages.size();
+        return BagTrialActivity.images.size();
     }
 }

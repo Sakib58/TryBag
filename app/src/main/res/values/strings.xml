@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">OverlayCamera</string>
+    <string name="app_name">Try Bag</string>
     <string-array name="height_items">
         <item>90</item>
         <item>95</item>

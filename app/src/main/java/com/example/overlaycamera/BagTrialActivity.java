@@ -7,8 +7,14 @@ import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.View;
+import android.widget.ImageButton;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -26,16 +32,39 @@ public class BagTrialActivity extends AppCompatActivity {
     public VerticalViewPager viewPager;
     FirebaseFirestore db;
     ProgressDialog progressDialog;
+    ImageButton btnSettings;
 
-    List<BagProperties> bags;
+    public static List<BagProperties> bags;
+    public static List<ImageProperties> images;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bag_trial);
         db = FirebaseFirestore.getInstance();
+        btnSettings = findViewById(R.id.menu_settings);
+
+        btnSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(BagTrialActivity.this,SettingsActivity.class));
+            }
+        });
         progressDialog = new ProgressDialog(this);
         progressDialog.show();
+
+        images = new ArrayList<>();
+
+        DatabaseHelper databaseHelper = new DatabaseHelper(this);
+        Cursor imageData = databaseHelper.getData();
+
+        while (imageData.moveToNext()){
+            images.add(new ImageProperties(imageData.getString(2),
+                    imageData.getInt(3),imageData.getInt(4),
+                    imageData.getInt(5),imageData.getInt(6),
+                    imageData.getInt(0),imageData.getInt(1)));
+        }
+
 
         db.collection("bags")
                 .get()
@@ -66,6 +95,18 @@ public class BagTrialActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public Bitmap StringToBitMap(String encodedString) {
+        try {
+            byte[] encodeByte = Base64.decode(encodedString, Base64.DEFAULT);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(encodeByte, 0,
+                    encodeByte.length);
+            return bitmap;
+        } catch (Exception e) {
+            e.getMessage();
+            return null;
+        }
     }
 
 

@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -51,6 +52,7 @@ public class ChildFragment extends Fragment {
     FloatingActionButton btnDownload,btnShare;
     RelativeLayout rlTrial;
     OutputStream outputStream;
+    int parent,child;
 
     public ChildFragment(){
 
@@ -66,33 +68,27 @@ public class ChildFragment extends Fragment {
         btnDownload = view.findViewById(R.id.fab_download);
         rlTrial = view.findViewById(R.id.rl_trial);
 
-
-
-
         btnShare = view.findViewById(R.id.fab_share);
-
-
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("image_prefs",0);
 
         Bundle bundle = getArguments();
 
-        int child = Integer.parseInt(bundle.getString("child")) + 1;
-        String bms1 = sharedPreferences.getString("image_bitmap_side"+child,"");
+        parent = Integer.parseInt(bundle.getString("parent"));
+        child = Integer.parseInt(bundle.getString("child"));
+
+        String bms1 = BagTrialActivity.images.get(child).imageBitmap;
         Bitmap bm = StringToBitMap(bms1);
         trialBoyIV.setImageBitmap(bm);
 
         RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) trialBagIV.getLayoutParams();
-        layoutParams.width = sharedPreferences.getInt("width_side"+child,150);
-        layoutParams.height = sharedPreferences.getInt("height_side"+child,210);
-        layoutParams.leftMargin = sharedPreferences.getInt("marginLeft_side"+child,190);
-        layoutParams.topMargin = sharedPreferences.getInt("marginTop_side"+child,190);
+        layoutParams.height = BagTrialActivity.images.get(child).height;
+        layoutParams.width = BagTrialActivity.images.get(child).width;
+        layoutParams.leftMargin = BagTrialActivity.images.get(child).marginLeft;
+        layoutParams.topMargin = BagTrialActivity.images.get(child).marginTop;
 
         trialBagIV.setLayoutParams(layoutParams);
         Glide.with(getContext())
-                .load(Uri.parse(bundle.getStringArrayList("side_images")
-                        .get(child-1)))
+                .load(Uri.parse(BagTrialActivity.bags.get(parent).sides.get(child)))
                 .into(trialBagIV);
-
 
         btnShare.setOnClickListener(new View.OnClickListener() {
             @Override

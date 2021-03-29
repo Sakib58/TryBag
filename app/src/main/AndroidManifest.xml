@@ -14,9 +14,17 @@
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.OverlayCamera"
-        >
-        <activity android:name=".BagTrialActivity"></activity>
+        android:theme="@style/Theme.OverlayCamera">
+        <activity android:name=".SettingsActivity"></activity>
+        <activity android:name=".BrightnessActivity3" />
+        <activity android:name=".ImagePreview3" />
+        <activity android:name=".BrightnessActivity2" />
+        <activity android:name=".ImagePreview2" />
+        <activity android:name=".TestActivity" />
+        <activity android:name=".BrightnessActivity1" />
+        <activity android:name=".ImagePreview1" />
+        <activity android:name=".CameraSide1" />
+        <activity android:name=".BagTrialActivity" />
         <activity android:name=".CameraSide3" />
         <activity android:name=".CameraSide2" />
         <activity android:name=".DisplayImageActivity" />

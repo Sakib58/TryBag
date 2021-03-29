@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".BrightnessActivity2">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/iv_set_image_brightness_2"
+        android:scaleType="centerCrop"
+        />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/iv_set_bag_image_brightness_2"
+        android:src="@drawable/bag2"
+        android:scaleType="fitXY"
+        />
+
+    <SeekBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="650dp"
+        android:id="@+id/sb_brightness_bar2"
+        android:max="200"
+        />
+
+    <Button
+        android:id="@+id/btn_back_brightness_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="700dp"
+        android:text="Back"
+        android:textColor="#0B0B0B"
+        app:backgroundTint="#F4EBEB" />
+
+    <Button
+        android:id="@+id/btn_next_brightness_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="280dp"
+        android:layout_marginTop="700dp"
+        android:text="Next"
+        android:textColor="#0B0B0B"
+        app:backgroundTint="#F4EBEB" />
+
+</RelativeLayout>

@@ -18,7 +18,7 @@ public class ContentFragment extends Fragment {
     public HorizontalViewPager viewPager;
     public HorizontalViewPagerAdapter horizontalViewPagerAdapter;
     public String parentInd;
-    public ArrayList<String> sideImages;
+    public static ArrayList<String> sideImages;
 
 
     public ContentFragment() {

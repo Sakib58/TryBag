@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CameraSide2"
-    android:id="@+id/main2">
+    android:id="@+id/main"
+    >
 
     <FrameLayout
-        android:id="@+id/framelayout2"
+        android:id="@+id/framelayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />
@@ -16,33 +17,33 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/iv_captured_image_2"
+        android:id="@+id/iv_captured_image_1"
         />
 
     <ImageView
         android:layout_width="150dp"
         android:layout_height="210dp"
         android:scaleType="fitXY"
-        android:src="@drawable/bag2"
-        android:id="@+id/iv_bag2"
+        android:src="@drawable/bag"
+        android:id="@+id/iv_bag"
         android:layout_marginTop="190dp"
-        android:layout_marginLeft="130dp"
+        android:layout_marginLeft="190dp"
         />
 
 
     <ImageView
-        android:id="@+id/iv_boy2"
+        android:id="@+id/iv_boy"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:alpha=".5"
-        android:src="@drawable/boy_sample_side_2" />
+        android:src="@drawable/boy" />
 
 
 
 
 
     <ImageButton
-        android:id="@+id/button2"
+        android:id="@+id/button1"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginStart="180dp"
@@ -50,14 +51,13 @@
         android:layout_marginTop="720dp"
         android:src="@mipmap/ic_camera"
         android:text="Take a Photo" />
-
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="720dp"
         android:layout_marginLeft="250dp"
         android:src="@drawable/ic_help"
-        android:id="@+id/ib_help2"
+        android:id="@+id/ib_help"
         />
 
 </RelativeLayout>

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -30,6 +31,7 @@ public class SetHeight extends AppCompatActivity {
                 height = (90+(5*position));
                 SharedPreferences sharedPref = getSharedPreferences("height_pref",0);
                 SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putInt("current_side",1);
                 editor.putInt("height",height);
                 editor.apply();
             }
@@ -43,7 +45,10 @@ public class SetHeight extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(SetHeight.this,MainActivity.class));
+                DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
+                databaseHelper.reInitialize();
+
+                startActivity(new Intent(SetHeight.this,CameraSide1.class));
             }
         });
     }
