@@ -2,15 +2,20 @@ package com.example.overlaycamera;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 public class SettingsActivity extends AppCompatActivity {
 
     ImageView iv1,iv2,iv3;
+
+    LinearLayout addOrRemoveBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,10 +25,17 @@ public class SettingsActivity extends AppCompatActivity {
         iv1 = findViewById(R.id.iv_sec1_side1);
         iv2 = findViewById(R.id.iv_sec1_side2);
         iv3 = findViewById(R.id.iv_sec1_side3);
+        addOrRemoveBtn = findViewById(R.id.add_others_photo);
+        addOrRemoveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(SettingsActivity.this,AllImageActivity.class));
+            }
+        });
 
-        iv1.setImageBitmap(StringToBitMap(BagTrialActivity.images.get(0).imageBitmap));
-        iv2.setImageBitmap(StringToBitMap(BagTrialActivity.images.get(1).imageBitmap));
-        iv3.setImageBitmap(StringToBitMap(BagTrialActivity.images.get(2).imageBitmap));
+        iv2.setImageBitmap(ViewPagerActivity.personList.get(1).imageBitmap);
+        iv1.setImageBitmap(ViewPagerActivity.personList.get(0).imageBitmap);
+        iv3.setImageBitmap(ViewPagerActivity.personList.get(2).imageBitmap);
     }
 
     public Bitmap StringToBitMap(String encodedString) {

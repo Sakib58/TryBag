@@ -23,29 +23,42 @@
     <SeekBar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="650dp"
+        android:layout_marginTop="600dp"
         android:id="@+id/sb_brightness_bar"
         android:max="200"
         />
 
-    <Button
-        android:id="@+id/btn_back_brightness_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="700dp"
-        android:text="Back"
-        android:textColor="#0B0B0B"
-        app:backgroundTint="#F4EBEB" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="640dp"
+        android:layout_marginRight="20dp"
+        android:background="#4360E8FA"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:showDividers="middle">
 
-    <Button
-        android:id="@+id/btn_next_brightness_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="280dp"
-        android:layout_marginTop="700dp"
-        android:text="Next"
-        android:textColor="#0B0B0B"
-        app:backgroundTint="#F4EBEB" />
+
+        <Button
+            android:id="@+id/btn_back_brightness_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Back"
+            android:textColor="#0B0B0B"
+            app:backgroundTint="#F4EBEB"
+            android:layout_marginRight="100dp"
+            />
+
+        <Button
+            android:id="@+id/btn_next_brightness_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Next"
+            android:textColor="#0B0B0B"
+            app:backgroundTint="#F4EBEB" />
+
+
+    </LinearLayout>
 
 </RelativeLayout>

@@ -2,11 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.overlaycamera">
 
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -15,7 +10,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OverlayCamera">
-        <activity android:name=".SettingsActivity"></activity>
+        <activity android:name=".SearchActivity"></activity>
+        <activity android:name=".ViewPagerActivity">
+
+        </activity>
+        <activity android:name=".AllImageActivity" />
+        <activity android:name=".SettingsActivity" />
         <activity android:name=".BrightnessActivity3" />
         <activity android:name=".ImagePreview3" />
         <activity android:name=".BrightnessActivity2" />
@@ -24,7 +24,6 @@
         <activity android:name=".BrightnessActivity1" />
         <activity android:name=".ImagePreview1" />
         <activity android:name=".CameraSide1" />
-        <activity android:name=".BagTrialActivity" />
         <activity android:name=".CameraSide3" />
         <activity android:name=".CameraSide2" />
         <activity android:name=".DisplayImageActivity" />
@@ -34,8 +33,14 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity android:name=".MainActivity" />
     </application>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
 </manifest>

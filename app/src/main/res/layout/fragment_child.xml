@@ -1,24 +1,25 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#8c8a8c"
-    android:id="@+id/fgChildId"
->
+    android:id="@+id/fgChildId">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/rl_trial"
+        android:background="#092348"
+        android:layout_margin="3dp"
+        android:id="@+id/rl_trial_image"
         >
         <ImageView
+            android:id="@+id/iv_trial_boy"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/iv_trial_boy"
-            android:scaleType="centerCrop"
             android:adjustViewBounds="true"
-            android:src="@drawable/boy_sample_side_2"
-            />
+            android:scaleType="centerCrop"
+            android:src="@drawable/boy_sample_side_2" />
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -26,27 +27,6 @@
             android:id="@+id/iv_trial_bag"
             />
 
-
     </RelativeLayout>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_download"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="650dp"
-        android:layout_marginLeft="300dp"
-        android:clickable="true"
-        app:srcCompat="@android:drawable/stat_sys_download" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_share"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="230dp"
-        android:layout_marginTop="650dp"
-        android:clickable="true"
-        app:srcCompat="@android:drawable/ic_menu_share" />
-
-
 
 </RelativeLayout>

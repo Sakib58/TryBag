@@ -65,10 +65,10 @@ public class BrightnessActivity2 extends AppCompatActivity {
                 z.setDrawingCacheEnabled(true);
                 z.buildDrawingCache();
                 bm = Bitmap.createBitmap(z.getDrawingCache());
-                boolean ok = databaseHelper.addData(1,2,BitMapToString(bm),ImagePreview1.layoutParams.height,
-                        ImagePreview1.layoutParams.width,
-                        ImagePreview1.layoutParams.leftMargin,
-                        ImagePreview1.layoutParams.topMargin);
+                boolean ok = databaseHelper.addData(1,2,BitMapToString(bm),ImagePreview2.layoutParams.height,
+                        ImagePreview2.layoutParams.width,
+                        ImagePreview2.layoutParams.leftMargin,
+                        ImagePreview2.layoutParams.topMargin);
                 if (ok){
                     startActivity(new Intent(BrightnessActivity2.this,CameraSide3.class));
                     Toast.makeText(BrightnessActivity2.this, "Data saved successfully!", Toast.LENGTH_SHORT).show();

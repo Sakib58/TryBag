@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.overlaycamera"
-        minSdkVersion 16
+        minSdkVersion 20
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -47,4 +47,6 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.8.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
     implementation 'com.android.support:multidex:1.0.3'
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.getbase:floatingactionbutton:1.10.1'
 }

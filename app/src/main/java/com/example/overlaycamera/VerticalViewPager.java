@@ -6,59 +6,70 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.viewpager.widget.ViewPager;
 
 public class VerticalViewPager extends ViewPager {
-    public VerticalViewPager(@NonNull Context context) {
-        super(context);
-    }
 
-    public VerticalViewPager(@NonNull Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
+    private static final String TAG = VerticalViewPager.class.getSimpleName();
+
+    public VerticalViewPager(Context context) {
+        super(context);
         init();
     }
 
-    private void init() {
-        setPageTransformer(true,new VerticalPage());
+    public void init(){
+        setPageTransformer(true,new VerticalViewPagerTransform());
         setOverScrollMode(OVER_SCROLL_NEVER);
     }
 
-    private MotionEvent getIntercambioXY(MotionEvent me){
-        float width = getWidth();
-        float height = getHeight();
+    public VerticalViewPager(Context context, AttributeSet attributeSet){
+        super(context,attributeSet);
+        init();
+    }
 
-        float newX = (me.getY() / height) * width;
-        float newY = (me.getX() / width) * height;
+    private MotionEvent swapXY(MotionEvent event) {
+        float newX = event.getY();
+        float newY = event.getX();
 
-        me.setLocation(newX,newY);
-        return me;
+        event.setLocation(newX,newY);
+        return event;
     }
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        boolean intercepted = super.onInterceptTouchEvent(getIntercambioXY(ev));
-        getIntercambioXY(ev);
-        return  intercepted;
+        boolean intercept = super.onInterceptTouchEvent(swapXY(ev));
+        swapXY(ev);
+        return intercept;
     }
+
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
-        return super.onTouchEvent(getIntercambioXY(ev));
+        return super.onTouchEvent(swapXY(ev));
     }
 
-    private class VerticalPage implements ViewPager.PageTransformer{
+    private class VerticalViewPagerTransform implements PageTransformer {
 
+        private static final float Min_Scale = 0.65f;
         @Override
         public void transformPage(@NonNull View page, float position) {
-            if (position < -1){
+
+            if(position < -1) {
                 page.setAlpha(0);
-            }else if (position <= 1){
+            }else if(position <= 0){
                 page.setAlpha(1);
                 page.setTranslationX(page.getWidth() * -position);
-                float yPosition = position * page.getHeight();
-                page.setTranslationY(yPosition);
-            }else{
+                page.setTranslationY(page.getHeight() * position);
+                page.setScaleX(1);
+                page.setScaleY(1);
+            }else if(position <= 1){
+                page.setAlpha(1-position);
+                page.setTranslationX(page.getWidth()* -position);
+                page.setTranslationY(0);
+                float scaleFactor = Min_Scale + (1 - Min_Scale) * (1 - Math.abs(position));
+                page.setScaleX(scaleFactor);
+                page.setScaleY(scaleFactor);
+            }else if(position > 1){
                 page.setAlpha(0);
             }
         }

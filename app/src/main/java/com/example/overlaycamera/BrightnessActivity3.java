@@ -1,21 +1,43 @@
 package com.example.overlaycamera;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
+
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BrightnessActivity3 extends AppCompatActivity {
 
@@ -23,6 +45,22 @@ public class BrightnessActivity3 extends AppCompatActivity {
     ImageView im_brightness;
     public static Bitmap bm;
     DatabaseHelper databaseHelper;
+
+    FirebaseFirestore db;
+    ProgressDialog progressDialog;
+    ImageButton btnSettings;
+    public int dataDownloaded=0;
+    public int totalData ;
+
+    public static List<BagProperties> bagsList,allBagsList;
+    public static List<ImageProperties> personList;
+
+    public BagProperties bagProperties;
+    public boolean isComplete;
+    SharedPreferences sharedPreferences;
+    public boolean red,blue,indigo,abc,def,ghi;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +74,21 @@ public class BrightnessActivity3 extends AppCompatActivity {
         btnNext = findViewById(R.id.btn_next_brightness_3);
         btnBack = findViewById(R.id.btn_back_brightness_3);
         databaseHelper = new DatabaseHelper(this);
+
+        db = FirebaseFirestore.getInstance();
+        sharedPreferences = getSharedPreferences("height_pref",0);
+        red = sharedPreferences.getBoolean("red",true);
+        blue = sharedPreferences.getBoolean("blue",true);
+        indigo = sharedPreferences.getBoolean("indigo",true);
+        abc = sharedPreferences.getBoolean("Abc",true);
+        def = sharedPreferences.getBoolean("Def",true);
+        ghi = sharedPreferences.getBoolean("Ghi",true);
+
+        progressDialog = new ProgressDialog(this);
+
+        personList = new ArrayList<>();
+
+        isComplete = false;
 
         im_bag.setLayoutParams(ImagePreview3.layoutParams);
         sb_value.setProgress(100);
@@ -61,17 +114,19 @@ public class BrightnessActivity3 extends AppCompatActivity {
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressDialog.show();
                 View z = im_brightness;
                 z.setDrawingCacheEnabled(true);
                 z.buildDrawingCache();
                 bm = Bitmap.createBitmap(z.getDrawingCache());
-                boolean ok = databaseHelper.addData(1,3,BitMapToString(bm),ImagePreview1.layoutParams.height,
-                        ImagePreview1.layoutParams.width,
-                        ImagePreview1.layoutParams.leftMargin,
-                        ImagePreview1.layoutParams.topMargin);
+                boolean ok = databaseHelper.addData(1,3,BitMapToString(bm),ImagePreview3.layoutParams.height,
+                        ImagePreview3.layoutParams.width,
+                        ImagePreview3.layoutParams.leftMargin,
+                        ImagePreview3.layoutParams.topMargin);
                 if (ok){
-                    startActivity(new Intent(BrightnessActivity3.this,BagTrialActivity.class));
-                    Toast.makeText(BrightnessActivity3.this, "Data saved successfully!", Toast.LENGTH_SHORT).show();
+                    getAllData();
+                    //startActivity(new Intent(BrightnessActivity3.this,ViewPagerActivity.class));
+                    //Toast.makeText(BrightnessActivity3.this, "Data saved successfully!", Toast.LENGTH_SHORT).show();
                 }else {
                     Toast.makeText(BrightnessActivity3.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
                 }
@@ -80,6 +135,61 @@ public class BrightnessActivity3 extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void getAllData() {
+
+        DatabaseHelper databaseHelper = new DatabaseHelper(this);
+        Cursor imageData = databaseHelper.getData();
+
+        while (imageData.moveToNext()){
+            personList.add(new ImageProperties(StringToBitMap(imageData.getString(2)),
+                    imageData.getInt(3),imageData.getInt(4),
+                    imageData.getInt(5),imageData.getInt(6),
+                    imageData.getInt(0),imageData.getInt(1)));
+        }
+
+
+        db.collection("bags")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @RequiresApi(api = Build.VERSION_CODES.N)
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()){
+                            totalData = task.getResult().size();
+                            bagsList = new ArrayList<>();
+                            allBagsList = new ArrayList<>();
+                            for (QueryDocumentSnapshot doc : task.getResult()){
+                                //primeProgressDialog.show();
+
+                                addNewBag(doc.getData().get("side1").toString(),
+                                        doc.getData().get("side2").toString(),
+                                        doc.getData().get("side3").toString(),
+                                        new BagProperties(
+                                                doc.getId(),
+                                                doc.getData().get("color").toString(),
+                                                doc.getData().get("name").toString(),
+                                                doc.getData().get("site").toString()
+                                        )
+                                );
+                            }
+                            if(task.isComplete()){
+                                //progressDialog.dismiss();
+                                //viewPager = (VerticalViewPager) findViewById(R.id.viewPager);
+                                //viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(),bags);
+                                //viewPager.setAdapter(viewPagerAdapter);
+                            }
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Helper.log("Failed to retrieve data from firebase because "+e.getMessage());
+                progressDialog.dismiss();
+            }
+        });
+
     }
 
     public String BitMapToString(Bitmap bitmap) {
@@ -105,5 +215,97 @@ public class BrightnessActivity3 extends AppCompatActivity {
 
 
         }
+    }
+
+    public Bitmap StringToBitMap(String encodedString) {
+        try {
+            byte[] encodeByte = Base64.decode(encodedString, Base64.DEFAULT);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(encodeByte, 0,
+                    encodeByte.length);
+            return bitmap;
+        } catch (Exception e) {
+            e.getMessage();
+            return null;
+        }
+    }
+
+    public void addNewBag(String side1,String side2,String side3,BagProperties bagProperties) {
+        Picasso.get().load(side1).
+                into(new Target() {
+                    @Override
+                    public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                        Helper.log("Side1 height: "+bitmap.getHeight());
+                        bagProperties.setSide1(bitmap);
+                        Picasso.get().load(side2).into(new Target() {
+                            @Override
+                            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                                bagProperties.setSide2(bitmap);
+                                Picasso.get().load(side3).into(new Target() {
+                                    @Override
+                                    public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                                        bagProperties.setSide3(bitmap);
+                                        DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
+                                        databaseHelper.addBagData(bagProperties.docId,BitMapToString(bagProperties.getSide1()),BitMapToString(bagProperties.getSide2()),BitMapToString(bagProperties.getSide3()),bagProperties.name,bagProperties.color,bagProperties.site,bagProperties.isChildLiked(),bagProperties.isAdultLiked());
+                                        //if (sharedPreferences.getBoolean(bagProperties.color,true) && sharedPreferences.getBoolean(bagProperties.name,true)){
+                                        //    bagsList.add(bagProperties);
+                                        //}
+                                        //allBagsList.add(bagProperties);
+                                        //primeProgressDialog.dismiss();
+                                        Helper.log("Data downloaded");
+                                        dataDownloaded++;
+                                        if (dataDownloaded == totalData){
+                                            SharedPreferences prefs = getSharedPreferences("app_data",MODE_PRIVATE);
+                                            SharedPreferences.Editor editor = prefs.edit();
+                                            /*Gson gson = new Gson();
+                                            String json = gson.toJson(bagsList);
+                                            Gson gson1 = new Gson();
+                                            String json2 = gson1.toJson(personList);
+                                            editor.putString("bag_list",json);
+                                            editor.putString("child_liked_bag_list","{}");
+                                            editor.putString("adult_liked_bag_list","{}");
+                                            editor.putString("original_bag_list",json);
+                                            editor.putString("person_list",json2);*/
+                                            editor.putBoolean("home_mode",true);
+                                            editor.putBoolean("child_mode",false);
+                                            editor.putBoolean("adult_mode",false);
+                                            editor.apply();
+                                            progressDialog.dismiss();
+                                            startActivity(new Intent(BrightnessActivity3.this,ViewPagerActivity.class));
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onBitmapFailed(Exception e, Drawable errorDrawable) {
+
+                                    }
+
+                                    @Override
+                                    public void onPrepareLoad(Drawable placeHolderDrawable) {
+
+                                    }
+                                });
+                            }
+
+                            @Override
+                            public void onBitmapFailed(Exception e, Drawable errorDrawable) {
+
+                            }
+
+                            @Override
+                            public void onPrepareLoad(Drawable placeHolderDrawable) {
+
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onBitmapFailed(Exception e, Drawable errorDrawable) {
+                    }
+
+                    @Override
+                    public void onPrepareLoad(Drawable placeHolderDrawable) {
+
+                    }
+                });
     }
 }

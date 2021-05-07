@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".SearchActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select bag color"
+        android:textSize="25dp"
+        />
+
+    <CheckBox
+        android:id="@+id/cb_red"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Red" />
+
+    <CheckBox
+        android:id="@+id/cb_blue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Blue"/>
+
+    <CheckBox
+        android:id="@+id/cb_indigo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Indigo" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select bag name"
+        android:textSize="25dp"
+        />
+
+    <CheckBox
+        android:id="@+id/cb_abc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Abc" />
+
+    <CheckBox
+        android:id="@+id/cb_def"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Def" />
+
+    <CheckBox
+        android:id="@+id/cb_ghi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ghi" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search"
+        android:id="@+id/btn_search"/>
+</LinearLayout>

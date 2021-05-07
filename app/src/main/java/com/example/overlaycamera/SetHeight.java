@@ -33,6 +33,13 @@ public class SetHeight extends AppCompatActivity {
                 SharedPreferences.Editor editor = sharedPref.edit();
                 editor.putInt("current_side",1);
                 editor.putInt("height",height);
+                editor.putBoolean("red",true);
+                editor.putBoolean("blue",true);
+                editor.putBoolean("indigo",true);
+                editor.putBoolean("Abc",true);
+                editor.putBoolean("Def",true);
+                editor.putBoolean("Ghi",true);
+
                 editor.apply();
             }
 

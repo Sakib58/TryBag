@@ -7,18 +7,104 @@
     android:layout_height="match_parent">
 
     <com.example.overlaycamera.VerticalViewPager
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:id="@+id/viewPager"
-        />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <ImageButton
+        android:id="@+id/menu_settings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_menu"
-        android:id="@+id/menu_settings"
-        />
+        android:src="@android:drawable/ic_menu_sort_by_size" />
+
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        >
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/ib_all_filtered_bags"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_title="Home"
+            app:fab_size="mini"
+            app:fab_icon="@drawable/ic_baseline_home_24"
+
+            />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_adult_fav_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_title="Adult Liked bags"
+            app:fab_size="mini"
+            android:src="@drawable/face_imoji" />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_child_fav_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_title="Adult Liked bags"
+            app:fab_size="mini"
+            android:src="@drawable/face_imoji_16"
+            app:maxImageSize="16dp"
+            />
+
+    </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="640dp"
+        android:layout_marginRight="20dp"
+        android:background="#4360E8FA"
+        android:divider="@drawable/empty_tall_divider"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:showDividers="middle">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_adult_fav"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            android:src="@drawable/face_imoji" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_child_fav"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            app:maxImageSize="16dp"
+            android:src="@drawable/face_imoji" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:src="@android:drawable/ic_menu_search" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_redirect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            app:srcCompat="@android:drawable/ic_menu_set_as" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            app:srcCompat="@android:drawable/ic_menu_share" />
+
+
+    </LinearLayout>
 
 
 </RelativeLayout>
