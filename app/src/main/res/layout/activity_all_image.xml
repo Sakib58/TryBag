@@ -17,9 +17,10 @@
         >
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="350dp"
+                android:layout_height="250dp"
                 android:orientation="horizontal"
                 android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
                 >
 
                 <ImageView
@@ -56,8 +57,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Change or remove photos"
+                    android:text="Add New Person"
                     android:textSize="20dp"
+                    android:id="@+id/tv_sec1"
                     />
                 <ImageView
                     android:layout_width="wrap_content"
@@ -71,10 +73,11 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="350dp"
+                android:layout_height="250dp"
                 android:orientation="horizontal"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="0dp"
+                android:layout_marginTop="20dp"
                 >
                 <ImageView
                     android:layout_width="115dp"
@@ -111,8 +114,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Add another"
+                android:text="Add New Person"
                 android:textSize="20dp"
+                android:id="@+id/tv_sec2"
                 />
             <ImageView
                 android:layout_width="wrap_content"
@@ -128,10 +132,10 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="350dp"
+                android:layout_height="250dp"
                 android:orientation="horizontal"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="100dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginRight="0dp"
                 >
                 <ImageView
@@ -169,8 +173,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Add another"
+                android:text="Add New Person"
                 android:textSize="20dp"
+                android:id="@+id/tv_sec3"
                 />
             <ImageView
                 android:layout_width="wrap_content"

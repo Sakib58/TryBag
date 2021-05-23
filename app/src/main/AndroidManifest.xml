@@ -10,9 +10,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OverlayCamera">
-        <activity android:name=".SearchActivity"></activity>
+        <activity android:name=".ChangeOrRemoveActivity"></activity>
+        <activity android:name=".SearchActivity" />
         <activity android:name=".ViewPagerActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".AllImageActivity" />
         <activity android:name=".SettingsActivity" />
@@ -27,20 +32,13 @@
         <activity android:name=".CameraSide3" />
         <activity android:name=".CameraSide2" />
         <activity android:name=".DisplayImageActivity" />
-        <activity android:name=".SetHeight">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-        </activity>
+        <activity android:name=".SetHeight"></activity>
         <activity android:name=".MainActivity" />
     </application>
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
-
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

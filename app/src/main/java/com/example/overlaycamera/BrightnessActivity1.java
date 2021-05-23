@@ -66,7 +66,7 @@ public class BrightnessActivity1 extends AppCompatActivity {
                 z.setDrawingCacheEnabled(true);
                 z.buildDrawingCache();
                 bm = Bitmap.createBitmap(z.getDrawingCache());
-                boolean ok = databaseHelper.addData(1,1,BitMapToString(bm),ImagePreview1.layoutParams.height,
+                boolean ok = databaseHelper.addData(getSharedPreferences("height_pref",0).getInt("current_section",1),1,BitMapToString(bm),ImagePreview1.layoutParams.height,
                         ImagePreview1.layoutParams.width,
                         ImagePreview1.layoutParams.leftMargin,
                         ImagePreview1.layoutParams.topMargin);

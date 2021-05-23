@@ -56,9 +56,9 @@ public class ChildFragment extends Fragment {
         trialBag.setLayoutParams(layoutParams);
 
         if (ViewPagerActivity.bagList.size()>0){
-            if (child==0) trialBag.setImageBitmap(ViewPagerActivity.bagList.get(parent).getSide1());
-            if (child==1) trialBag.setImageBitmap(ViewPagerActivity.bagList.get(parent).getSide2());
-            if (child==2) {trialBag.setImageBitmap(ViewPagerActivity.bagList.get(parent).getSide3());}
+            if (child%3 == 0) trialBag.setImageBitmap(ViewPagerActivity.bagList.get(parent).getSide1());
+            if (child%3 == 1) trialBag.setImageBitmap(ViewPagerActivity.bagList.get(parent).getSide2());
+            if (child%3 == 2) {trialBag.setImageBitmap(ViewPagerActivity.bagList.get(parent).getSide3());}
         }
 
 

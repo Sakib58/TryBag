@@ -82,6 +82,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         mDb.update("BAG_DATA",contentValues,"ID='"+id+"'",null);
     }
 
+    public void deletePerson(int section){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_NAME, SECTION + "=?", new String[]{String.valueOf(section)});
+    }
+
     public void updateAdultLikeBagData(String id, int value)
     {
         Helper.log("DatabaseHelper-87:"+value);
