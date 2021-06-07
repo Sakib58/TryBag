@@ -268,6 +268,7 @@ public class BrightnessActivity3 extends AppCompatActivity {
                                             editor.putBoolean("home_mode",true);
                                             editor.putBoolean("child_mode",false);
                                             editor.putBoolean("adult_mode",false);
+                                            editor.putBoolean("navigate_to_home",true);
                                             editor.apply();
                                             progressDialog.dismiss();
                                             startActivity(new Intent(BrightnessActivity3.this,ViewPagerActivity.class));

@@ -92,19 +92,15 @@ public class ViewPagerActivity extends AppCompatActivity {
         editor.apply();
 
         if (sharedPreferences.getBoolean("home_mode",true)){
-            Helper.log("FUCKED UP IN HOME MODE");
             cursor = databaseHelper.getBagData();
         }else if (sharedPreferences.getBoolean("child_mode",false)){
-            Helper.log("FUCKED UP IN CHILD MODE");
             cursor = databaseHelper.getChildLikedBagData();
         }else if (sharedPreferences.getBoolean("adult_mode",false)){
-            Helper.log("FUCKED UP IN ADULT MODE");
             cursor = databaseHelper.getAdultLikedBagData();
         }
         SharedPreferences sharedPreferences1 = getSharedPreferences("height_pref",0);
 
         while (cursor.moveToNext()){
-            Helper.log("CHILD CHECKING>>>"+cursor.getString(5)+">>"+cursor.getString(7));
             BagProperties bagProperties = new BagProperties(cursor.getString(0),cursor.getString(5),cursor.getString(4),cursor.getString(6));
             bagProperties.setSide1(StringToBitMap(cursor.getString(1)));
             bagProperties.setSide2(StringToBitMap(cursor.getString(2)));
